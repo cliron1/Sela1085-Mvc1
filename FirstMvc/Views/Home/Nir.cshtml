@@ -1,0 +1,19 @@
+﻿@model Person
+@{
+    var person = Model;
+
+    var other = (int?)ViewData["other"];
+    var minAge = (int?)ViewBag.minAge;
+}
+
+<h1>
+    @Model.Name is @Model.Age yo (Other: @other, MinAge: @minAge)
+</h1>
+
+<p>Skills:</p>
+
+<ul>
+    @foreach(var skill in Model.Skills) {
+        <li>@skill</li>
+    }
+</ul>

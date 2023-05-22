@@ -1,0 +1,24 @@
+﻿@model List<Product>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var prod in Model) {
+            <tr>
+                <td>@prod.Id</td>
+                <td>@prod.Name</td>
+                <td>@prod.Price $</td>
+                <td><a href="@("/Products/Details/"+prod.Id)">View</a></td>
+                <td><a href="@("/Products/Edit/"+prod.Id)">Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
