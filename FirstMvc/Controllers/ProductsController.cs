@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FirstMvc.Controllers;
 
 public class ProductsController : Controller {
-    private List<Product> data;
+    private readonly List<Product> data;
 
     public ProductsController() {
         data = new List<Product> {
@@ -13,13 +13,11 @@ public class ProductsController : Controller {
         };
     }
 
-
     // /Products
     [HttpGet]
-    public IActionResult Index() {
+    public IActionResult Index() =>
         // Todo: Get the list from the database
-        return View(data);
-    }
+        View(data);
 
     // /Products/View/7
     [HttpGet]
@@ -42,15 +40,27 @@ public class ProductsController : Controller {
     // /Products/Edit
     [HttpPost]
     public IActionResult Edit(Product item) {
+        //ModelState.AddModelError("", "Stam error");
+
+        if(!item.Price.HasValue) {
+            item.Price = 10;
+            ModelState.Clear();
+            TryValidateModel(item);
+        }
+
+        if(!ModelState.IsValid) {
+            return View(item);
+        }
+
         // Todo: Save to DB
-        return View();
+
+        //return View();
+        return RedirectToAction(nameof(Index));
     }
 
 
     // /Products/Delete/7
-    public IActionResult Delete(int id) {
-        return View();
-    }
+    public IActionResult Delete(int id) => View();
 
     // Method || VERB
 

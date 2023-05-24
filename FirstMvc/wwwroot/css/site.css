@@ -20,3 +20,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.validation-summary-errors,
+.field-validation-error {
+    color: #c00;
+}
+
+    .validation-summary-errors ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .validation-summary-errors ul li {
+        font-weight: bold;
+    }

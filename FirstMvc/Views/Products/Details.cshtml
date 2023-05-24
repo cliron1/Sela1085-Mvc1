@@ -15,5 +15,6 @@
 
 <hr />
 
-<a href="/products" class="btn btn-outline-primary">Back to list</a>
-<a href="@("/products/edit/"+Model.Id)" class="btn btn-primary">Edit</a>
+<a asp-controller="Products" asp-action="Index" class="btn btn-outline-primary">Back to list</a>
+
+<a  asp-controller="Products" asp-action="@nameof(ProductsController.Edit)" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>

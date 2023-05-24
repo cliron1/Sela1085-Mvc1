@@ -16,8 +16,8 @@
                 <td>@prod.Id</td>
                 <td>@prod.Name</td>
                 <td>@prod.Price $</td>
-                <td><a href="@("/Products/Details/"+prod.Id)">View</a></td>
-                <td><a href="@("/Products/Edit/"+prod.Id)">Edit</a></td>
+                <td><a asp-controller="Products" asp-action="@nameof(ProductsController.Details)" asp-route-id="@prod.Id")">View</a></td>
+                <td><a asp-controller="Products" asp-action="@nameof(ProductsController.Edit)" asp-route-id="@prod.Id")">Edit</a></td>
             </tr>
         }
     </tbody>

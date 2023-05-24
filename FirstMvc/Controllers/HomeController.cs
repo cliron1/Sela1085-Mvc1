@@ -1,20 +1,15 @@
 ﻿using FirstMvc.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
 
 namespace FirstMvc.Controllers;
 
 public class HomeController : Controller {
     // localhost:7777/
-    public IActionResult Index() {
-        return View();
-    }
+    public IActionResult Index() => View();
 
     // localhost:7777/Home/Privacy
-    public IActionResult Privacy() {
-        return View();
-    }
+    public IActionResult Privacy() => View();
 
     // localhost:7777/Home/Nir
     public IActionResult Nir() {
@@ -26,7 +21,7 @@ public class HomeController : Controller {
                 "Html", "Css", "js", "Asp.Net Core MVC"
             }
         };
-        
+
         ViewData["other"] = 77;
         ViewBag.minAge = 18;
 
@@ -34,16 +29,12 @@ public class HomeController : Controller {
     }
 
     // localhost:7777/Home/Oriel
-    public IActionResult Oriel() {
-        return View();
-    }
+    public IActionResult Oriel() => View();
 
 
 
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error() {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }
