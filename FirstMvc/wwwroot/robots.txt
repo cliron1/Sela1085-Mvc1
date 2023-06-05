@@ -1,0 +1,10 @@
+disallow: *
+
+allow: /$
+allow: /?*
+
+disallow: *?partner=
+disallow: *?sCh=
+
+User-agent: *
+Sitemap: https://www.n12.co.il/sitemap.xml

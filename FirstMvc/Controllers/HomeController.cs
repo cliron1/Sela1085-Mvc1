@@ -4,10 +4,13 @@ using System.Diagnostics;
 
 namespace FirstMvc.Controllers;
 
+[Route("/")]
 public class HomeController : Controller {
 
+    [HttpGet]
     public IActionResult Index() => View();
 
+    [HttpGet("/privacy")]
     public IActionResult Privacy() => View();
 
 

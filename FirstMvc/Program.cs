@@ -1,14 +1,17 @@
+using FirstMvc.Data;
 using FirstMvc.Services;
+using Microsoft.EntityFrameworkCore;
 
-WebApplicationBuilder builder;
-
-builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<IUsersService, UsersService>();
+builder.Services.AddScoped<IUsersService, UsersServiceDb>(); // << downgrade to Scoped
 
+builder.Services.AddDbContext<MyContext>(options =>
+     options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Gallery_1085;Trusted_Connection=True;")
+);
 
 
 
@@ -17,6 +20,12 @@ builder.Services.AddSingleton<IUsersService, UsersService>();
 
 
 var app = builder.Build();
+
+await using(var scope = app.Services.CreateAsyncScope()) {
+	using var context = scope.ServiceProvider.GetService<MyContext>();
+	await context.Database.MigrateAsync();
+	//await context.Database.EnsureCreatedAsync();
+}
 
 // Configure the HTTP request pipeline.
 if(!app.Environment.IsDevelopment()) {
@@ -37,8 +46,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();
 
 app.Run();

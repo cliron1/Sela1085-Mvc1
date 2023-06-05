@@ -1,10 +1,14 @@
-﻿using FirstMvc.Models;
+﻿using FirstMvc.Data.Entities;
 using FirstMvc.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FirstMvc.Controllers;
 
+// Route constraints:
+// https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-7.0#route-constraints
+
+[Route("/users")]
 public class UsersController : Controller {
     private readonly IUsersService usersService;
 
@@ -12,25 +16,27 @@ public class UsersController : Controller {
         usersService = usersServiceFromDI;
     }
 
-    // GET: Users
+    // GET /users
+    [HttpGet]
     public IActionResult Index()
         => View(usersService.GetAll());
 
-    // GET: Users/Details/5
+    // GET /users/{id}
+    [HttpGet("{id:int:min(1)}")]
     public IActionResult Details(int id) {
         var item = usersService.GetById(id);
         if(item == null)
-            return NotFound();
+            return BadRequest($"No user with id = {id}");
         return View(item);
     }
 
-    // GET: Users/Create
+    // GET /users/create
+    [HttpGet("create")]
     public IActionResult Create() {
         return View();
     }
 
-    // POST: Users/Create
-    [HttpPost]
+    [HttpPost("create")]
     [ValidateAntiForgeryToken]
     public IActionResult Create(User model) {
         if(!ModelState.IsValid)
@@ -41,12 +47,11 @@ public class UsersController : Controller {
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: Users/Edit/5
+    [HttpGet("edit/{id}")]
     public ActionResult Edit(int id) {
         return View();
     }
 
-    // POST: Users/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Edit(int id, IFormCollection collection) {
@@ -57,8 +62,7 @@ public class UsersController : Controller {
         }
     }
 
-    // GET: Users/Delete/5
-    [HttpGet]
+    [HttpGet("delete/{id}")]
     public IActionResult Delete(int id)  {
         var item = usersService.GetById(id);
         if(item == null)

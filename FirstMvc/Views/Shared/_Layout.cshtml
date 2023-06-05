@@ -1,10 +1,12 @@
 ﻿@{
     var hideMenu = ViewData["hideMenu"] != null;
+    var robots = ViewData["robots"] ?? "index,follow";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta name="robots" content="@robots" />
     <meta name="viewport" content="width=device-width, initial-scale=2.0" />
     <title>@ViewData["Title"] - FirstMvc</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -58,7 +60,10 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*<script src="~/js/data.js"></script>*@
+    <script src="~/js/site.js" type="module" asp-append-version="true"></script>
+
     <!-- Scripts from View -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>

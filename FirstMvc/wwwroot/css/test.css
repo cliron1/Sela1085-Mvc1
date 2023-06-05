@@ -1,0 +1,28 @@
+﻿/* this is less */
+.bold {
+  font-weight: bold;
+  font-size: 150%;
+}
+.field-validation-error {
+  color: #c00123;
+}
+.validation-summary-errors {
+  color: #c00123;
+}
+.validation-summary-errors ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.validation-summary-errors ul li {
+  font-weight: bold;
+  font-size: 150%;
+}
+.profile {
+  border: 1px solid blue;
+}
+.profile form label {
+  color: red;
+}
+.profile form input {
+  background-color: green;
+}

@@ -1,4 +1,22 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿import { family } from './data.js'
 
-// Write your JavaScript code.
+// IIFE
+(
+	function () {
+		function doShit(msg) {
+			const h1 = document.querySelector('h1');
+			h1.innerText = msg;
+		}
+
+		setTimeout(doShit, 2 * 1000, 'Shit happens! 123');
+
+
+		let html = '';
+		for (const person of family) {
+			html += `<li>${person.name}</li>`
+		}
+
+		const div = document.querySelector('.container main div');
+		div.innerHTML += `<ul>${html}</ul>`
+	}
+)();

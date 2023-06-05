@@ -1,0 +1,20 @@
+/* this is less */
+@errorColor: #c00123;
+
+.bold { font-weight: bold; font-size: 150%; }
+
+.field-validation-error { color: @errorColor; }
+
+.validation-summary-errors { color: @errorColor;
+    ul { list-style-type: none; padding-left: 0;
+        li { .bold() }
+    }
+}
+
+
+.profile { border: 1px solid blue;
+    form {
+        label { color: red; }
+        input { background-color: green; }
+    }
+}
