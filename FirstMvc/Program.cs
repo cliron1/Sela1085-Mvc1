@@ -1,6 +1,7 @@
 using FirstMvc.Data;
 using FirstMvc.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,11 @@ app.UseHttpsRedirection(); // => Short circuit
 // http://aa.com/css/site.css
 // http://aa.com/imgs/logo.png
 app.UseStaticFiles(); // logo.png | script.js | site.css  || => Short circuit
+
+app.UseStaticFiles(new StaticFileOptions() {
+    RequestPath = "/utils",
+    FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "node_modules"))
+});
 
 app.UseRouting();
 

@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "defaultProvider": "jsdelivr",
+	"libraries": [
+		{
+			"provider": "jsdelivr",
+			"library": "bootstrap@5.3.0",
+			"destination": "wwwroot/lib3/bootstrap/",
+			"files": [
+				"dist/css/bootstrap.rtl.min.css.map",
+				"dist/css/bootstrap.rtl.min.css",
+				"dist/css/bootstrap.min.css.map",
+				"dist/css/bootstrap.min.css",
+				"dist/js/bootstrap.bundle.min.js",
+				"dist/js/bootstrap.bundle.min.js.map"
+			]
+		}
+	]
+}

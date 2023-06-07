@@ -21,4 +21,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\imgs\" />
+    <Folder Include="wwwroot\lib2\" />
+    <Folder Include="wwwroot\lib3\" />
+  </ItemGroup>
+
 </Project>

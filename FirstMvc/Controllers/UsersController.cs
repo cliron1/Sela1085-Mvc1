@@ -1,4 +1,5 @@
-﻿using FirstMvc.Data.Entities;
+﻿using FirstMvc.Data;
+using FirstMvc.Data.Entities;
 using FirstMvc.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,13 @@ public class UsersController : Controller {
     public UsersController(IUsersService usersServiceFromDI) {
         usersService = usersServiceFromDI;
     }
+
+    [HttpGet("/test-view")]
+    public IActionResult TestView([FromServices] MyContext context) {
+        var items = context.VUsers.ToList();
+        return Ok(items);
+    }
+
 
     // GET /users
     [HttpGet]
